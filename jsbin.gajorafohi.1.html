@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2022 by anonymous (http://jsbin.com/gajorafohi/1/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100&display=swap" rel="stylesheet">
+  <title>color clock</title>
+<style id="jsbin-css">
+/* le kell nullázni a margot és a térközt*/
+* { margin: 0; padding: 0; }
+/* html, body, magassága 100% */ 
+html, body {
+  height: 100%;
+}
+#clock {
+  text-align: center;
+}
+/*igy lehet tesztelni hogy müködik a szelektor
+#clock {
+  display: none;
+}
+*/
+/* igy érjük el hogy relative--> 50% legyeng az elhejezése */
+#clock {
+  position: relative;
+  top: 50%;
+}
+/*betűtitus adunk hozzá*/
+#clock {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 68px;
+}
+/*középre igazitás mert elcsuszot a méret möveléskor*/
+#clock {
+  margin-top: -34px;
+}
+</style>
+</head>
+<body>
+  <div id="clock">12:13:14</div>
+<script id="jsbin-javascript">
+function colorClock(){
+  var date = new Date();
+
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+
+  if (hours <= 9) {
+    hours = "0" + hours;
+  }
+  if (minutes <= 9) {
+    minutes = "0" + minutes;
+  }
+  if (seconds <= 9) {
+    seconds = "0" + seconds;
+  }
+
+  var clockFace = hours + ':' + minutes + ':' + seconds;
+  var hexColor = '#' + hours + minutes + seconds;
+
+  document.getElementById('clock').innerHTML = clockFace;
+  document.body.style.background = hexColor;
+
+  setTimeout(function() {
+    colorClock();
+  }, 1000);
+}
+
+colorClock();
+</script>
+</body>
+</html>
